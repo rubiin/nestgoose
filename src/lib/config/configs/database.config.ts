@@ -6,4 +6,5 @@ export const database = registerAs('database', () => ({
 	password: process.env.DB_PASSWORD,
 	username: process.env.DB_USERNAME,
 	dbName: process.env.DB_DATABASE,
+	uri: process.env.MONGODB_URI,
 }));

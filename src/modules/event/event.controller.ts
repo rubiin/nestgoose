@@ -7,20 +7,37 @@ import {
 	Param,
 	Delete,
 	Query,
+	UseGuards,
+	UseInterceptors,
+	UploadedFile,
 } from '@nestjs/common';
 import { EventService } from './event.service';
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
 import { InviteEventDto } from './dto/invite-dto';
 import { GetPaginationQuery } from '@common/classes/pagnation';
+import { User } from '@models';
+import { LoggedInUser } from '@common/decorators/user.decorator';
+import { JwtAuthGuard } from '@common/guards/jwt.guard';
+import { ImageMulterOption } from '@common/misc/misc';
+import { FileInterceptor } from '@nestjs/platform-express';
 
+@UseGuards(JwtAuthGuard)
 @Controller('event')
 export class EventController {
 	constructor(private readonly eventService: EventService) {}
 
+	@UseInterceptors(FileInterceptor('coverImage', ImageMulterOption))
 	@Post()
-	create(@Body() createEventDto: CreateEventDto) {
-		return this.eventService.create(createEventDto);
+	create(
+		@Body() createEventDto: CreateEventDto,
+		@LoggedInUser() user: User,
+		@UploadedFile() image: Express.Multer.File,
+	) {
+		return this.eventService.create(
+			{ ...createEventDto, coverImage: image.filename },
+			user,
+		);
 	}
 
 	@Get()
@@ -29,15 +46,24 @@ export class EventController {
 	}
 
 	@Get(':id')
-	findOne(@Param('id') id: string) {
-		return this.eventService.findOne(id);
+	findOne(@Param('id') id: string, @LoggedInUser() user: User) {
+		return this.eventService.findOne(id, user);
 	}
 
+	@UseInterceptors(FileInterceptor('coverImage', ImageMulterOption))
 	@Patch(':id')
-	update(@Param('id') id: string, @Body() updateEventDto: UpdateEventDto) {
-		return this.eventService.update(+id, updateEventDto);
+	update(
+		@Param('id') id: string,
+		@Body() updateEventDto: UpdateEventDto,
+		@LoggedInUser() user: User,
+		@UploadedFile() image: Express.Multer.File,
+	) {
+		return this.eventService.update(
+			id,
+			{ ...updateEventDto, coverImage: image.filename },
+			user,
+		);
 	}
-
 
 	@Post(':id/invite')
 	inviteGuests(@Param('id') id: string, @Body() inviteDto: InviteEventDto) {

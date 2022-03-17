@@ -37,4 +37,7 @@ export class CreateEventDto {
 
 	@IsOptional()
 	city: string;
+
+	host: string;
+	location: string;
 }

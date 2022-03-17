@@ -38,7 +38,6 @@ export class TokensService {
 		jwt: JwtService,
 		@InjectModel(User.name) private userRepository: Model<UserDocument>,
 	) {
-		this.tokens = tokens;
 		this.jwt = jwt;
 	}
 
@@ -49,33 +48,12 @@ export class TokensService {
 	 * @return {*}  {Promise<string>}
 	 * @memberof TokensService
 	 */
-	async generateAccessToken(user: User): Promise<string> {
+	async generateAccessToken(payload: Record<string, any>): Promise<string> {
 		const options: JwtSignOptions = {
 			...this.BASE_OPTIONS,
-			subject: String(user.id),
+			subject: String(payload._id),
 		};
 
-		return this.jwt.signAsync({ ...pick(user, ['id']) }, options);
-	}
-
-	/**
-	 *
-	 *
-	 * @param {User} user
-	 * @param {number} expiresIn
-	 * @return {*}  {Promise<string>}
-	 * @memberof TokensService
-	 */
-	async generateRefreshToken(user: User, expiresIn: number): Promise<string> {
-		const token = await this.tokens.createRefreshToken(user, expiresIn);
-
-		const options: JwtSignOptions = {
-			...this.BASE_OPTIONS,
-			expiresIn,
-			subject: String(user.id),
-			jwtid: String(token.id),
-		};
-
-		return this.jwt.signAsync({}, options);
+		return this.jwt.signAsync({ payload }, options);
 	}
 }

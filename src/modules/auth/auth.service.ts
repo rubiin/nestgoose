@@ -31,7 +31,7 @@ export class AuthService {
 	 *
 	 *
 	 * @param {UserLoginDto} userDto
-	 * @return {Promise<ILoginSignupReponse>}
+	 * @return {Promise<ILoginSignupResponse>}
 	 * @memberof AuthService
 	 */
 	async login(userDto: UserLoginDto): Promise<IResponse<any>> {
@@ -58,11 +58,12 @@ export class AuthService {
 
 		const user = {
 			user: userExists._id,
+			id: userExists._id,
 			phoneNumber: userExists.phoneNumber,
 			isRegistrationComplete: userExists.isRegistrationComplete,
 		};
 
-		const token = await this.tokenService.generateAccessToken(userExists);
+		const token = await this.tokenService.generateAccessToken(user);
 
 		const payload = HelperService.buildPayloadResponse(user, token);
 

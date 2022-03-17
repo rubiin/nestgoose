@@ -47,6 +47,9 @@ export class Event extends Document {
 		default: null,
 	})
 	eventLink: string;
+
+	@Prop({ type: [Types.ObjectId], ref: 'Location' })
+	location: string;
 }
 const EventSchema = SchemaFactory.createForClass(Event);
 

@@ -4,4 +4,5 @@ export { UserSchema, User } from './userModel';
 export { HostSchema, Host } from './hostModel';
 export { InvitationSchema, Invitation } from './invitationModel';
 export { EventSchema, Event } from './eventModel';
+export { LocationSchema, Location } from './locationModel';
 export { OtpSchema, Otp } from './otpModel';

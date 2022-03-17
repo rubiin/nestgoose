@@ -6,11 +6,22 @@ import {
 	Patch,
 	Param,
 	Delete,
+	UseGuards,
+	Query,
+	UploadedFile,
+	UseInterceptors,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { JwtAuthGuard } from '@common/guards/jwt.guard';
+import { GetPaginationQuery } from '@common/classes/pagnation';
+import { LoggedInUser } from '@common/decorators/user.decorator';
+import { User } from '@models';
+import { ImageMulterOption } from '@common/misc/misc';
+import { FileInterceptor } from '@nestjs/platform-express';
 
+@UseGuards(JwtAuthGuard)
 @Controller('user')
 export class UserController {
 	constructor(private readonly userService: UserService) {}
@@ -21,22 +32,25 @@ export class UserController {
 	}
 
 	@Get()
-	findAll() {
-		return this.userService.findAll();
+	findAll(@Query() queryDto: GetPaginationQuery) {
+		return this.userService.findAll(queryDto);
 	}
 
-	@Get(':id')
-	findOne(@Param('id') id: string) {
-		return this.userService.findOne(+id);
+	@Get('profile')
+	findOne(@LoggedInUser() user: User) {
+		return this.userService.findOne(user._id);
 	}
 
-	@Patch(':id')
-	update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-		return this.userService.update(+id, updateUserDto);
-	}
-
-	@Delete(':id')
-	remove(@Param('id') id: string) {
-		return this.userService.remove(+id);
+	@UseInterceptors(FileInterceptor('profilePic', ImageMulterOption))
+	@Patch()
+	update(
+		@LoggedInUser() user: User,
+		@Body() updateUserDto: UpdateUserDto,
+		@UploadedFile() image: Express.Multer.File,
+	) {
+		return this.userService.update(user._id, {
+			...updateUserDto,
+			profilePic: image.filename,
+		});
 	}
 }
