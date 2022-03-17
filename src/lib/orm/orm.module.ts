@@ -9,11 +9,11 @@ import {
 	Invitation,
 	InvitationSchema,
 	Location,
+	LocationSchema,
 	Otp,
 	OtpSchema,
 	User,
 	UserSchema,
-	LocationSchema,
 } from '@models';
 
 @Module({

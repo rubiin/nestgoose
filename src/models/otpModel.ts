@@ -31,6 +31,7 @@ export class Otp extends Document {
 	})
 	isUsed: boolean;
 }
+
 const OtpSchema = SchemaFactory.createForClass(Otp);
 
 OtpSchema.plugin(mongooseDelete, {

@@ -29,12 +29,6 @@ module.exports = {
 		browser: true,
 	},
 	rules: {
-		'import/no-unresolved': [
-			2,
-			{
-				ignore: ['@', 'minifaker'],
-			},
-		],
 		'unicorn/filename-case': 'off',
 		'no-secrets/no-secrets': 'error',
 		'import/prefer-default': 'off',

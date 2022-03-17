@@ -4,20 +4,16 @@ import { AuthService } from './auth.service';
 import { OtpVerifyDto, SendOtpDto } from './dtos/otp';
 import { ResetPasswordDto } from './dtos/reset-password';
 import { UserLoginDto } from './dtos/user-login';
-import { TwilioService } from '@lib/twilio/twilio.service';
 
 @ApiTags('Auth routes')
 @Controller('auth')
 export class AuthController {
-	constructor(
-		private readonly authService: AuthService,
-		private readonly twilioService: TwilioService,
-	) {}
+	constructor(private readonly authService: AuthService) {}
 
 	@ApiOperation({ summary: 'Login user' })
 	@Post('login')
 	async login(@Body() _userLoginDto: UserLoginDto) {
-		return this.twilioService.sendSms('hello fom nest', '9817385479');
+		return this.authService.login(_userLoginDto);
 	}
 
 	@Post('reset-password')

@@ -1,14 +1,12 @@
 import {
+	Body,
 	Controller,
 	Get,
-	Post,
-	Body,
 	Patch,
-	Param,
-	Delete,
-	UseGuards,
+	Post,
 	Query,
 	UploadedFile,
+	UseGuards,
 	UseInterceptors,
 } from '@nestjs/common';
 import { UserService } from './user.service';

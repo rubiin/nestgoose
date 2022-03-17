@@ -15,23 +15,17 @@ import {
 } from 'nestjs-i18n';
 import * as path from 'path';
 import { join } from 'path';
-import { TwilioModule } from '@lib/twilio/twilio.module';
-import { ConfigService } from '@nestjs/config';
+import { NestTwilioModule } from '@lib/twilio';
 
 @Module({
 	imports: [
 		AuthModule,
 		ConfigModule,
 		OrmModule,
-		TwilioModule.forRootAsync(TwilioModule, {
-			imports: [ConfigModule],
-			useFactory: (configService: ConfigService) => ({
-				accountSid: configService.get('twilio.accountSid'),
-				authToken: configService.get('twilio.authToken'),
-				from: configService.get('twilio.from'),
-			}),
-			inject: [ConfigService],
-		}),
+		UserModule,
+		EventModule,
+		AuthModule,
+		NestTwilioModule,
 		ServeStaticModule.forRoot({
 			rootPath: join(__dirname, 'resources'),
 		}),
@@ -46,9 +40,6 @@ import { ConfigService } from '@nestjs/config';
 				AcceptLanguageResolver,
 			],
 		}),
-		UserModule,
-		EventModule,
-		AuthModule,
 	],
 	providers: [
 		{

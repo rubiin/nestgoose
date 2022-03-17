@@ -51,6 +51,7 @@ export class Event extends Document {
 	@Prop({ type: [Types.ObjectId], ref: 'Location' })
 	location: string;
 }
+
 const EventSchema = SchemaFactory.createForClass(Event);
 
 EventSchema.plugin(mongooseDelete, {

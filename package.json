@@ -24,7 +24,7 @@
 		"@golevelup/nestjs-modules": "^0.5.0",
 		"@nestjs/axios": "^0.0.7",
 		"@nestjs/common": "8.4.1",
-		"@nestjs/config": "^1.2.0",
+		"@nestjs/config": "^2.0.0",
 		"@nestjs/core": "8.4.1",
 		"@nestjs/jwt": "^8.0.0",
 		"@nestjs/mongoose": "^9.0.3",
@@ -33,7 +33,6 @@
 		"@nestjs/serve-static": "^2.2.2",
 		"@nestjs/swagger": "^5.2.0",
 		"@rubiin/js-utils": "^2.1.6",
-		"argon2": "^0.28.5",
 		"bcrypt": "^5.0.1",
 		"cache-manager": "^3.6.0",
 		"cache-manager-redis-store": "^2.0.0",
@@ -46,7 +45,6 @@
 		"eta": "^1.12.3",
 		"firebase-admin": "^10.0.2",
 		"helmet": "^5.0.2",
-		"hpp": "^0.2.3",
 		"joi": "^17.6.0",
 		"mongoose": "^6.2.7",
 		"mongoose-aggregate-paginate-v2": "^1.0.6",
@@ -59,7 +57,6 @@
 		"passport": "0.5.2",
 		"passport-jwt": "4.0.0",
 		"piscina": "^3.2.0",
-		"puppeteer": "^13.5.1",
 		"reflect-metadata": "0.1.13",
 		"rxjs": "^7.5.5",
 		"sharp": "^0.30.3",
@@ -75,7 +72,6 @@
 		"@nestjs/cli": "8.2.3",
 		"@nestjs/schematics": "8.0.8",
 		"@nestjs/testing": "8.4.1",
-		"@types/argon2": "^0.15.0",
 		"@types/cache-manager": "^3.4.3",
 		"@types/cache-manager-redis-store": "^2.0.1",
 		"@types/compression": "^1.7.2",
@@ -107,11 +103,11 @@
 		"eslint-plugin-import": "2.25.4",
 		"eslint-plugin-no-secrets": "^0.8.9",
 		"eslint-plugin-prettier": "^4.0.0",
-		"eslint-plugin-unicorn": "^41.0.0",
+		"eslint-plugin-unicorn": "^41.0.1",
 		"express": "^4.17.3",
 		"husky": "^7.0.4",
 		"jest": "27.5.1",
-		"lint-staged": "^12.3.6",
+		"lint-staged": "^12.3.7",
 		"prettier": "^2.6.0",
 		"run-script-webpack-plugin": "^0.0.11",
 		"supertest": "6.2.2",
@@ -150,19 +146,11 @@
 			"html"
 		]
 	},
-	"mikro-orm": {
-		"useTsNode": true,
-		"configPaths": [
-			"./src/common/database/mikro-orm-cli.config.ts",
-			"./dist/common/database/mikro-orm-cli.config.js"
-		]
-	},
 	"engines": {
 		"node": ">=14"
 	},
 	"lint-staged": {
 		"*.{ts,tsx}": [
-			"eslint --cache --fix",
 			"prettier --write"
 		],
 		"*.{json,md,scss,yaml,yml}": [

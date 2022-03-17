@@ -34,6 +34,7 @@ export class Location extends Document {
 	})
 	zipCode: string;
 }
+
 const LocationSchema = SchemaFactory.createForClass(Location);
 
 LocationSchema.plugin(mongooseDelete, {

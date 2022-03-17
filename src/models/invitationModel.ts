@@ -54,6 +54,7 @@ export class Invitation extends Document {
 	})
 	isRsvped: boolean;
 }
+
 const InvitationSchema = SchemaFactory.createForClass(Invitation);
 
 InvitationSchema.plugin(mongooseDelete, {

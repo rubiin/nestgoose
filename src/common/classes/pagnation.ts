@@ -28,5 +28,5 @@ export class GetPaginationQuery {
 
 	sort = -1;
 
-	type: string = 'past';
+	type = 'past';
 }

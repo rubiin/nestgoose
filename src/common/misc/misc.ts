@@ -3,20 +3,10 @@ import { Request } from 'express';
 import * as mime from 'mime-types';
 import * as multer from 'multer';
 import * as path from 'path';
-import * as sharp from 'sharp';
-import * as fs from 'fs';
 import * as mongoose from 'mongoose';
+import * as fs from 'fs';
 
 const allowedExtensions = new Set(['png', 'jpg', 'jpeg']);
-
-export const resizeImage = async (req, quality = 500) => {
-	const { filename: image } = req.file;
-
-	const imagePath = path.resolve(req.file.destination, 'images', image);
-
-	await sharp(req.file.path).resize(quality).toFile(imagePath);
-	fs.unlinkSync(req.file.path);
-};
 
 export const convertStringIdToObjectId = (id: any) => {
 	return new mongoose.Types.ObjectId(id);
@@ -27,7 +17,16 @@ export const ImageMulterOption: MulterOptions = {
 		fileSize: 5 * 1024 * 1024, // 5 mb
 	},
 	storage: multer.diskStorage({
-		destination: './uploads',
+		destination: (req, file, cb) => {
+			const path = './uploads';
+
+			// check if the folder exists
+			if (!fs.existsSync(path)) {
+				// create the folder
+				fs.mkdirSync(path, { recursive: true });
+			}
+			return cb(null, path);
+		},
 		filename: (
 			_req: Request,
 			file: { originalname: string },

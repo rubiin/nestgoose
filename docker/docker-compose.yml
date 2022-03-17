@@ -4,16 +4,16 @@ services:
     #######################################
     # Ultimate-nest Service
     #######################################
-    ultimate-nest-service:
-        container_name: ultimate-nest-service
+    nestgoose:
+        container_name: nestgoose-service
         env_file: 'env/${ENV}.env'
         build:
             context: '..'
             dockerfile: ./docker/Dockerfile
-        image: ultimate-nest-service
+        image: nestgoose
 
         networks:
-            - ultimate-nest-net
+            - nestgoose-net
         ports:
             - 4054:4000
         command: npm run start:prod
@@ -22,8 +22,8 @@ services:
         restart: unless-stopped
 
 networks:
-    ultimate-nest-net:
-        name: ultimate-network
+    nestgoose-net:
+        name: nestgoose-network
         ipam:
             driver: default
             config:

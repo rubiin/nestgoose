@@ -10,4 +10,6 @@ export class OtpVerifyDto {
 	phoneNumber!: string;
 }
 
-export class SendOtpDto extends PickType(OtpVerifyDto, ['otpCode'] as const) {}
+export class SendOtpDto extends PickType(OtpVerifyDto, [
+	'phoneNumber',
+] as const) {}

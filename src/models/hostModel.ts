@@ -24,6 +24,7 @@ export class Host extends Document {
 	})
 	address: string;
 }
+
 const HostSchema = SchemaFactory.createForClass(Host);
 
 HostSchema.plugin(mongooseDelete, {

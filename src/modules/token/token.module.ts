@@ -6,7 +6,6 @@ import { JwtModule } from '@lib/jwt/jwt.module';
 
 @Module({
 	imports: [OrmModule, JwtModule],
-	controllers: [],
 	providers: [TokensService, JwtStrategy],
 	exports: [TokensService],
 })

@@ -1,5 +1,4 @@
-import { IsOptional } from '@common/validators/custom-optional.validator';
-import { IsArray, IsIn, Matches } from 'class-validator';
+import { IsArray, Matches } from 'class-validator';
 
 export class InviteEventDto {
 	@IsArray()

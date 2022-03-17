@@ -1,15 +1,9 @@
-import { User } from '@models';
 import * as eta from 'eta';
 import * as sharp from 'sharp';
-import puppeteer from 'puppeteer';
-import { omit, pick } from '@rubiin/js-utils';
+import { slugify } from '@rubiin/js-utils';
 import { customAlphabet } from 'nanoid/async';
 import { randomTypes } from '@common/constants/random-types.enum';
 import { IAuthenticationPayload } from '@common/interfaces/authentication.interface';
-import { slugify } from '@rubiin/js-utils';
-import { hashString } from '@common/misc/threads';
-
-let puppetterInstance = null;
 
 export /** @type {*} */
 /** @type {*} */
@@ -44,7 +38,6 @@ const HelperService = {
 	 * @static
 	 * @param {User} user
 	 * @param {string} accessToken
-	 * @param {string} [refreshToken]
 	 * @return {AuthenticationPayload}
 	 * @memberof UtilService
 	 */
@@ -58,19 +51,6 @@ const HelperService = {
 				access_token: accessToken,
 			},
 		};
-	},
-
-	/**
-	 *
-	 * hashes string with argon2
-	 *
-	 * @static
-	 * @param {string} string
-	 * @return {*} {(Promise<string>)}
-	 * @memberof HelperService
-	 */
-	hashString: (string: string): Promise<string> => {
-		return hashString(string);
 	},
 
 	/**
@@ -104,35 +84,6 @@ const HelperService = {
 	): Promise<Buffer> => {
 		return sharp(input).resize(config).toFormat('png').toBuffer();
 	},
-
-	/**
-	 *
-	 *
-	 * @static
-	 * @returns
-	 * @memberof HelperService
-	 */
-
-	getBrowserInstance: async () => {
-		if (puppetterInstance) {
-			puppetterInstance = await puppeteer.launch({
-				headless: true,
-				args: [
-					'--no-sandbox',
-					'--disable-setuid-sandbox',
-					'--disable-dev-shm-usage',
-					'--disable-accelerated-2d-canvas',
-					'--no-first-run',
-					'--no-zygote',
-					'--single-process', // <- this one doesn't works in Windows
-					'--disable-gpu',
-				],
-			});
-		}
-
-		return puppetterInstance;
-	},
-
 	/**
 	 *
 	 *

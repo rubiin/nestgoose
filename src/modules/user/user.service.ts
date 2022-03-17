@@ -1,20 +1,24 @@
 import { GetPaginationQuery } from '@common/classes/pagnation';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { User, UserDocument, UserSchema } from 'models/userModel';
 import { CreateUserDto } from './dto/create-user.dto';
 import { Model } from 'mongoose';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { convertStringIdToObjectId } from '@common/misc/misc';
+import { User, UserDocument } from '../../models/userModel';
+import { HelperService } from '@common/helpers/helpers.utils';
+import { randomTypes } from '@common/constants/random-types.enum';
+import { TwilioService } from '@lib/twilio/twilio.service';
 
 @Injectable()
 export class UserService {
 	constructor(
-		@InjectModel(User.name) private userRepository: Model<UserDocument>,
+		@InjectModel(User.name) private userModel: Model<UserDocument>,
+		private readonly twilioService: TwilioService,
 	) {}
 
 	async create(createUserDto: CreateUserDto) {
-		const userExists = await this.userRepository.findOne({
+		const userExists = await this.userModel.findOne({
 			phoneNumber: createUserDto.phoneNumber,
 			isVerified: true,
 		});
@@ -25,12 +29,19 @@ export class UserService {
 				HttpStatus.BAD_REQUEST,
 			);
 		}
-		const user = new User(createUserDto);
+		const user = new this.userModel(createUserDto);
+		const code = HelperService.getRandom(randomTypes.NUMBER, 6);
+
+		await this.twilioService.sendSms(
+			'Your verification code is: ' + code,
+			user.phoneNumber,
+		);
+
 		return user.save();
 	}
 
 	async findAll(options: GetPaginationQuery) {
-		const data = await this.userRepository
+		const data = await this.userModel
 			.aggregate([
 				{
 					$facet: {
@@ -61,6 +72,7 @@ export class UserService {
 						total: 0,
 						page: options.page,
 				  };
+
 		return {
 			pagination,
 			docs: desiredDocs,
@@ -68,7 +80,7 @@ export class UserService {
 	}
 
 	findOne(id: string) {
-		return this.userRepository.findById(id).lean().exec();
+		return this.userModel.findById(id).lean().exec();
 	}
 
 	update<T extends UpdateUserDto>(id: number, updateUserDto: T) {
@@ -77,7 +89,8 @@ export class UserService {
 			profilePic: updateUserDto.profilePic,
 			isRegistrationComplete: true,
 		};
-		return this.userRepository.findByIdAndUpdate(
+
+		return this.userModel.findByIdAndUpdate(
 			{
 				_id: convertStringIdToObjectId(id),
 			},

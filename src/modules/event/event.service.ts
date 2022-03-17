@@ -1,39 +1,41 @@
 import { GetPaginationQuery } from '@common/classes/pagnation';
-import { Event, Host, User } from '@models';
+import { Event, Host, Invitation, Location, User } from '@models';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { EventDocument } from 'models/eventModel';
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
 import { convertStringIdToObjectId } from '@common/misc/misc';
 import { InviteEventDto } from './dto/invite-dto';
-import { UserDocument } from 'models/userModel';
-import { Invitation, InvitationDocument } from 'models/invitationModel';
-import { HostDocument } from 'models/hostModel';
-import { Location, LocationDocument } from 'models/locationModel';
 import { pick } from '@rubiin/js-utils';
+import { LocationDocument } from '../../models/locationModel';
+import { HostDocument } from '../../models/hostModel';
+import { UserDocument } from '../../models/userModel';
+import { InvitationDocument } from '../../models/invitationModel';
+import { EventDocument } from '../../models/eventModel';
 
 @Injectable()
 export class EventService {
 	constructor(
-		@InjectModel(Event.name) private eventRepository: Model<EventDocument>,
+		@InjectModel(Event.name) private eventModel: Model<EventDocument>,
 		@InjectModel(User.name) private userRepository: Model<UserDocument>,
-		@InjectModel(Host.name) private hostRepository: Model<HostDocument>,
+		@InjectModel(Host.name) private hostModel: Model<HostDocument>,
 		@InjectModel(Location.name)
-		private locationRepository: Model<LocationDocument>,
+		private locationModel: Model<LocationDocument>,
 		@InjectModel(Invitation.name)
-		private invitationRepository: Model<InvitationDocument>,
+		private invitationModel: Model<InvitationDocument>,
 	) {}
 
 	async createHost(data: any) {
 		const newHost = pick(data, ['fullName', 'address', 'phoneNumber']);
-		const host = new Host(newHost);
+		const host = new this.hostModel(newHost);
+
 		return host.save();
 	}
 
 	async createLocation(data: any) {
-		const location = new Location(data);
+		const location = new this.locationModel(data);
+
 		return location.save();
 	}
 
@@ -58,8 +60,9 @@ export class EventService {
 		createEventDto.host = host._id;
 		createEventDto.location = location._id;
 
-		const event = new Event(createEventDto);
-		return user.save();
+		const event = new this.eventModel(createEventDto);
+
+		return event.save();
 	}
 
 	async inviteGuests(id: string, inviteDto: InviteEventDto) {
@@ -67,7 +70,7 @@ export class EventService {
 			phoneNumber: { $in: inviteDto.phoneNumbers },
 		});
 
-		return this.invitationRepository.insertMany(
+		return this.invitationModel.insertMany(
 			users.map(user => {
 				return { event: id, guest: user._id };
 			}),
@@ -85,7 +88,7 @@ export class EventService {
 			};
 		}
 
-		const data = await this.eventRepository
+		const data = await this.eventModel
 			.aggregate([
 				{
 					$match: matchCondition,
@@ -156,6 +159,7 @@ export class EventService {
 						total: 0,
 						page: options.page,
 				  };
+
 		return {
 			pagination,
 			docs: desiredDocs,
@@ -163,7 +167,7 @@ export class EventService {
 	}
 
 	async findOne(id: string, user: User) {
-		const eventExists = await this.eventRepository.findOne({
+		const eventExists = await this.eventModel.findOne({
 			_id: convertStringIdToObjectId(id),
 			host: convertStringIdToObjectId(user._id),
 		});
@@ -172,7 +176,7 @@ export class EventService {
 			throw new HttpException('Event not found', HttpStatus.NOT_FOUND);
 		}
 
-		return this.eventRepository.aggregate([
+		return this.eventModel.aggregate([
 			{ $match: { _id: convertStringIdToObjectId(id) } },
 
 			{
@@ -281,7 +285,7 @@ export class EventService {
 		updateEventDto: T,
 		user: User,
 	) {
-		const eventExists = await this.eventRepository.findOne({
+		const eventExists = await this.eventModel.findOne({
 			_id: convertStringIdToObjectId(id),
 			host: convertStringIdToObjectId(user._id),
 		});
@@ -298,7 +302,7 @@ export class EventService {
 			longitude: updateEventDto.longitude,
 		};
 
-		await this.locationRepository.findByIdAndUpdate(
+		await this.locationModel.findByIdAndUpdate(
 			{
 				_id: convertStringIdToObjectId(eventExists.location),
 			},
@@ -308,7 +312,7 @@ export class EventService {
 			{ useFindAndModify: false, new: true },
 		);
 
-		return this.eventRepository.findByIdAndUpdate(
+		return this.eventModel.findByIdAndUpdate(
 			{
 				_id: convertStringIdToObjectId(id),
 			},
@@ -320,8 +324,6 @@ export class EventService {
 	}
 
 	remove(id: string) {
-		return this.eventRepository.findByIdAndDelete(
-			convertStringIdToObjectId(id),
-		);
+		return this.eventModel.findByIdAndDelete(convertStringIdToObjectId(id));
 	}
 }

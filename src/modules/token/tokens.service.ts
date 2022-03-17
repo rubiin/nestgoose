@@ -1,12 +1,9 @@
-import { IResponse } from '@common/interfaces/response.interface';
 import { User } from '@models';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { JwtService, JwtSignOptions } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
-import { pick } from '@rubiin/js-utils';
-import { TokenExpiredError } from 'jsonwebtoken';
-import { UserDocument } from 'models/userModel';
 import { Model } from 'mongoose';
+import { UserDocument } from '../../models/userModel';
 
 export interface RefreshTokenPayload {
 	jti: number;

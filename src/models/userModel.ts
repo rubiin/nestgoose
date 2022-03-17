@@ -3,6 +3,7 @@ import { Document } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import * as mongooseAggregatePaginate from 'mongoose-aggregate-paginate-v2';
 import * as mongooseDelete from 'mongoose-delete';
+
 const saltRounds = 10;
 
 export type UserDocument = User & Document;
@@ -39,6 +40,7 @@ export class User extends Document {
 
 	comparePassword: Function;
 }
+
 const UserSchema = SchemaFactory.createForClass(User);
 
 UserSchema.pre('save', function (next) {
