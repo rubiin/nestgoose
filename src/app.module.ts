@@ -16,6 +16,7 @@ import {
 import * as path from 'path';
 import { join } from 'path';
 import { NestTwilioModule } from '@lib/twilio';
+import { MailModule } from '@lib/mailer/mailer.module';
 
 @Module({
 	imports: [
@@ -26,6 +27,20 @@ import { NestTwilioModule } from '@lib/twilio';
 		EventModule,
 		AuthModule,
 		NestTwilioModule,
+		MailModule.forRoot(MailModule, {
+			host: '',
+			port: 465,
+			username: '',
+			password: '',
+			previewEmail: false,
+			template: {
+				dir: path.join(__dirname, '/resources/templates/'),
+
+				etaOptions: {
+					cache: true,
+				},
+			},
+		}),
 		ServeStaticModule.forRoot({
 			rootPath: join(__dirname, 'resources'),
 		}),

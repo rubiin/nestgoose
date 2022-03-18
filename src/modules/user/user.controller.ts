@@ -18,6 +18,7 @@ import { LoggedInUser } from '@common/decorators/user.decorator';
 import { User } from '@models';
 import { ImageMulterOption } from '@common/misc/misc';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { MailerService } from '@lib/mailer/mailer.service';
 
 @UseGuards(JwtAuthGuard)
 @Controller('user')
