@@ -43,6 +43,9 @@ import { MailModule } from '@lib/mailer/mailer.module';
 		}),
 		ServeStaticModule.forRoot({
 			rootPath: join(__dirname, 'resources'),
+			serveStaticOptions: {
+				maxAge: 86400, // 1 day
+			},
 		}),
 		I18nModule.forRoot({
 			fallbackLanguage: 'en',
