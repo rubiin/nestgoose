@@ -26,6 +26,13 @@ export class AuthService {
 		private readonly i18n: I18nRequestScopeService,
 	) {}
 
+	async testI18n() {
+		throw new HttpException(
+			await this.i18n.translate('operations.USER_NOT_FOUND'),
+			HttpStatus.NOT_FOUND,
+		);
+	}
+
 	/**
 	 *
 	 *

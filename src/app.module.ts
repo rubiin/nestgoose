@@ -7,16 +7,11 @@ import { UserModule } from '@modules/user/user.module';
 import { Module } from '@nestjs/common';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import {
-	AcceptLanguageResolver,
-	HeaderResolver,
-	I18nJsonParser,
-	I18nModule,
-} from 'nestjs-i18n';
 import * as path from 'path';
 import { join } from 'path';
 import { NestTwilioModule } from '@lib/twilio';
 import { MailModule } from '@lib/mailer/mailer.module';
+import { NestI18nModule } from '@lib/i18n/i18n.module';
 
 @Module({
 	imports: [
@@ -27,6 +22,7 @@ import { MailModule } from '@lib/mailer/mailer.module';
 		EventModule,
 		AuthModule,
 		NestTwilioModule,
+		NestI18nModule,
 		MailModule.forRoot(MailModule, {
 			host: '',
 			port: 465,
@@ -46,17 +42,6 @@ import { MailModule } from '@lib/mailer/mailer.module';
 			serveStaticOptions: {
 				maxAge: 86400, // 1 day
 			},
-		}),
-		I18nModule.forRoot({
-			fallbackLanguage: 'en',
-			parser: I18nJsonParser,
-			parserOptions: {
-				path: path.join(__dirname, '/resources/i18n/'),
-			},
-			resolvers: [
-				new HeaderResolver(['x-custom-lang']),
-				AcceptLanguageResolver,
-			],
 		}),
 	],
 	providers: [

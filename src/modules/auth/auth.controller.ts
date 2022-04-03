@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Put } from '@nestjs/common';
+import { Body, Controller, Post, Put, Get } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { OtpVerifyDto, SendOtpDto } from './dtos/otp';
@@ -9,6 +9,12 @@ import { UserLoginDto } from './dtos/user-login';
 @Controller('auth')
 export class AuthController {
 	constructor(private readonly authService: AuthService) {}
+
+	@ApiOperation({ summary: 'Login user' })
+	@Get('test')
+	async test() {
+		return this.authService.testI18n();
+	}
 
 	@ApiOperation({ summary: 'Login user' })
 	@Post('login')
