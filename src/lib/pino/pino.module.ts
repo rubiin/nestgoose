@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { LoggerModule } from 'nestjs-pino';
+import * as path from 'path';
 
 @Module({
 	exports: [LoggerModule],
@@ -8,14 +9,33 @@ import { LoggerModule } from 'nestjs-pino';
 			useFactory: () => {
 				return {
 					pinoHttp: {
-						level:
-							process.env.NODE_ENV !== 'production'
-								? 'debug'
-								: 'info',
-						transport:
-							process.env.NODE_ENV !== 'production'
-								? { target: 'pino-pretty' }
-								: undefined,
+						level: 'info',
+
+						redact: {
+							paths: ['req.headers.authorization'],
+							remove: true,
+						},
+						transport: {
+							targets: [
+								{
+									target: 'pino/file',
+									level: 'info',
+									options: {
+										destination: 'logs/info.log',
+										mkdir: true,
+									},
+								},
+								{
+									target: 'pino-pretty',
+									level: 'info',
+									options: {
+										colorize: true,
+										prettyPrint: true,
+										translateTime: true,
+									},
+								},
+							],
+						},
 					},
 				};
 			},

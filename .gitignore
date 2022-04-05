@@ -43,8 +43,8 @@ uploads/*
 
 ### Node ###
 # Logs
-logs
-*.log
+.loglogs
+*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
