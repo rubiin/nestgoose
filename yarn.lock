@@ -1505,10 +1505,10 @@
   resolved "https://registry.npmjs.org/@protobufjs/utf8/-/utf8-1.1.0.tgz"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@rubiin/js-utils@^2.1.6":
-  version "2.1.6"
-  resolved "https://registry.npmjs.org/@rubiin/js-utils/-/js-utils-2.1.6.tgz"
-  integrity sha512-KLU8Fc+l8o9aCNG2okpC+dAp/Jr2I1ihhF+2cekBzsQcHeF8yzC+BQP29wUcG8TytE+Crzb2/gvc5nOTOja0iQ==
+"@rubiin/js-utils@^2.1.8":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@rubiin/js-utils/-/js-utils-2.1.8.tgz#c0667c17595b5308baab21cff7884940c991764b"
+  integrity sha512-Xq8GtvJeReDwQJrjFQ3pONpbSuO1lwu+iq5RZJ/64PE4aFoQWuNfMKRiF245Am7vMhfU+k1tJcue8/Mwy8a4og==
 
 "@selderee/plugin-htmlparser2@^0.6.0":
   version "0.6.0"
