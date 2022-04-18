@@ -57,7 +57,7 @@
 		"passport": "0.5.2",
 		"passport-jwt": "4.0.0",
 		"pino-http": "^6.6.0",
-		"pino-pretty": "^7.6.0",
+		"pino-pretty": "^7.6.1",
 		"piscina": "^3.2.0",
 		"preview-email": "^3.0.5",
 		"reflect-metadata": "0.1.13",
