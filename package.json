@@ -62,7 +62,7 @@
 		"preview-email": "^3.0.5",
 		"reflect-metadata": "0.1.13",
 		"rxjs": "^7.5.5",
-		"sharp": "^0.30.3",
+		"sharp": "^0.30.4",
 		"swagger-ui-express": "^4.3.0",
 		"twilio": "^3.76.0",
 		"type-fest": "^2.12.2"
