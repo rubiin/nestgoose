@@ -43,7 +43,7 @@
 		"date-fns": "^2.28.0",
 		"dotenv": "^16.0.0",
 		"eta": "^1.12.3",
-		"firebase-admin": "^10.0.2",
+		"firebase-admin": "^10.1.0",
 		"helmet": "^5.0.2",
 		"joi": "^17.6.0",
 		"mongoose": "^6.3.1",
