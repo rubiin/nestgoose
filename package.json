@@ -97,7 +97,7 @@
 		"@types/twilio": "^3.19.3",
 		"@types/winston": "^2.4.4",
 		"@typescript-eslint/eslint-plugin": "^5.20.0",
-		"@typescript-eslint/parser": "^5.18.0",
+		"@typescript-eslint/parser": "^5.20.0",
 		"cz-conventional-changelog": "3.3.0",
 		"eslint": "^8.12.0",
 		"eslint-config-prettier": "^8.5.0",
