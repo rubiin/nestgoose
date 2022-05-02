@@ -829,11 +829,11 @@
     strip-json-comments "^3.1.1"
 
 "@firebase/app-compat@0.x":
-  version "0.1.22"
-  resolved "https://registry.yarnpkg.com/@firebase/app-compat/-/app-compat-0.1.22.tgz#7190c50f3fd5d794e508bfcebe42a9b159f73890"
-  integrity sha512-InzQWdIKXsioZb6Ll/uynvopFbq9k3Qpi3gEUq+f8q0yr8/KQVuH2lIDmN70z11LRKXlsziU49qRwtV9tcEYhA==
+  version "0.1.23"
+  resolved "https://registry.yarnpkg.com/@firebase/app-compat/-/app-compat-0.1.23.tgz#76996a8a7000730a3b25f8b027d6ebfdc9959a1e"
+  integrity sha512-c0QOhU2UVxZ7N5++nLQgKZ899ZC8+/ESa8VCzsQDwBw1T3MFAD1cG40KhB+CGtp/uYk/w6Jtk8k0xyZu6O2LOg==
   dependencies:
-    "@firebase/app" "0.7.21"
+    "@firebase/app" "0.7.22"
     "@firebase/component" "0.5.13"
     "@firebase/logger" "0.3.2"
     "@firebase/util" "1.5.2"
@@ -849,10 +849,10 @@
   resolved "https://registry.npmjs.org/@firebase/app-types/-/app-types-0.6.2.tgz"
   integrity sha512-2VXvq/K+n8XMdM4L2xy5bYp2ZXMawJXluUIDzUBvMthVR+lhxK4pfFiqr1mmDbv9ydXvEAuFsD+6DpcZuJcSSw==
 
-"@firebase/app@0.7.21":
-  version "0.7.21"
-  resolved "https://registry.yarnpkg.com/@firebase/app/-/app-0.7.21.tgz#c31077bd4c61f130eb00b6546835ed9cf8da69ab"
-  integrity sha512-b1COyw4HwajJ4zQCtL7w+d4GCQDmEaVO957eLLlBwz4QuDlx3eQIirpQhzkkPH17BJFZ6x0qyYEt6Wbhakn0kg==
+"@firebase/app@0.7.22":
+  version "0.7.22"
+  resolved "https://registry.yarnpkg.com/@firebase/app/-/app-0.7.22.tgz#bf0a7a65f296a103031f4e0a86b142b3d36da64a"
+  integrity sha512-v3AXSCwAvZyIFzOGgPAYtzjltm1M9R4U4yqsIBPf5B4ryaT1EGK+3ETZUOckNl5y2YwdKRJVPDDore+B2xg0Ug==
   dependencies:
     "@firebase/component" "0.5.13"
     "@firebase/logger" "0.3.2"
