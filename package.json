@@ -88,7 +88,7 @@
 		"@types/nodemailer": "^6.4.4",
 		"@types/passport": "^1.0.7",
 		"@types/passport-jwt": "^3.0.6",
-		"@types/puppeteer": "^5.4.5",
+		"@types/puppeteer": "^5.4.6",
 		"@types/qs": "6.9.7",
 		"@types/reflect-metadata": "^0.1.0",
 		"@types/sharp": "^0.30.2",
