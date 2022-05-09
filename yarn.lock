@@ -6807,15 +6807,15 @@ mongoose-delete@^0.5.4:
   resolved "https://registry.npmjs.org/mongoose-delete/-/mongoose-delete-0.5.4.tgz"
   integrity sha512-zKkcWFEwTneVG4Oiy+qJRJPFCiGlqOJToHeU3a3meJybWsHCnWxdHkGEkFWNY5cmYEv5av3WwByOhPlQ6I+FmQ==
 
-mongoose@^6.3.1:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.3.1.tgz#3dbf85209a39355542bb47fba95f07bda1684987"
-  integrity sha512-bknh/VzU/7mBudfE4/5N7NR2Bpjvuxl93iePvyCGLhjeHF6w+mCRmucYGQkG6wEbCmEUVmBQrcgr2b40krMo/Q==
+mongoose@^6.3.2:
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.3.2.tgz#7cac2d11119896c8235ce03ae65c322257435142"
+  integrity sha512-4SEa8ynhJYkGMMbx6KOZ5kJz6qhKIYM8nAGufGq3xh+gNrKP3QwthNfc0X4DvTKhE0DQLMS1/Oy3cMl0AXm5RQ==
   dependencies:
     bson "^4.6.2"
     kareem "2.3.5"
     mongodb "4.5.0"
-    mpath "0.8.4"
+    mpath "0.9.0"
     mquery "4.0.2"
     ms "2.1.3"
     sift "16.0.0"
@@ -6825,10 +6825,10 @@ moo@^0.5.0, moo@^0.5.1:
   resolved "https://registry.yarnpkg.com/moo/-/moo-0.5.1.tgz#7aae7f384b9b09f620b6abf6f74ebbcd1b65dbc4"
   integrity sha512-I1mnb5xn4fO80BH9BLcF0yLypy2UKl+Cb01Fu0hJRkJjlCRtxZMWkTdAtDd5ZqCOxtCkhmRwyI57vWT+1iZ67w==
 
-mpath@0.8.4:
-  version "0.8.4"
-  resolved "https://registry.npmjs.org/mpath/-/mpath-0.8.4.tgz"
-  integrity sha512-DTxNZomBcTWlrMW76jy1wvV37X/cNNxPW1y2Jzd4DZkAaC5ZGsm8bfGfNOthcDuRJujXLqiuS6o3Tpy0JEoh7g==
+mpath@0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/mpath/-/mpath-0.9.0.tgz#0c122fe107846e31fc58c75b09c35514b3871904"
+  integrity sha512-ikJRQTk8hw5DEoFVxHG1Gn9T/xcjtdnOKIU1JTmGjZZlg9LST2mBLmcX3/ICIbgJydT2GOc15RnNy5mHmzfSew==
 
 mquery@4.0.2:
   version "4.0.2"
