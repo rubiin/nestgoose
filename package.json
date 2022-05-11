@@ -80,7 +80,7 @@
 		"@types/dotenv": "^8.2.0",
 		"@types/helmet": "^4.0.0",
 		"@types/hpp": "^0.2.2",
-		"@types/jest": "^27.4.1",
+		"@types/jest": "^27.5.0",
 		"@types/joi": "^17.2.3",
 		"@types/multer": "^1.4.7",
 		"@types/nanoid": "^3.0.0",
