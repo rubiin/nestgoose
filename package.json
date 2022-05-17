@@ -54,7 +54,7 @@
 		"nestjs-minio": "^2.1.15",
 		"nestjs-pino": "^2.5.2",
 		"nodemailer": "^6.7.3",
-		"passport": "0.5.2",
+		"passport": "0.5.3",
 		"passport-jwt": "4.0.0",
 		"pino-http": "^7.0.0",
 		"pino-pretty": "^7.6.1",
