@@ -6595,10 +6595,10 @@ minimist@1.2.6, minimist@^1.2.6:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
   integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
 
-minio@^7.0.27:
-  version "7.0.27"
-  resolved "https://registry.yarnpkg.com/minio/-/minio-7.0.27.tgz#964dc985e0a53bb6a458d59b31d21102de6c8d2a"
-  integrity sha512-0eFFob4ZzqsK0lsuM2cRddDkdFrfQGKCpD77XbFzFClhQL4w85CXC3UwfIe0rBRmLzFMZ5Y9bph8Dpny/COrQQ==
+minio@^7.0.28:
+  version "7.0.28"
+  resolved "https://registry.yarnpkg.com/minio/-/minio-7.0.28.tgz#1f527ded42df457833e0b203ea51316d6d3d58a4"
+  integrity sha512-4Oua0R73oCxxmxhh2NiXDJo4Md159I/mdG8ybu6351leMQoB2Sy8S4HmgG6CxuPlEJ0h9M8/WyaI2CARDeeDTQ==
   dependencies:
     async "^3.1.0"
     block-stream2 "^2.0.0"
@@ -6799,12 +6799,12 @@ nestjs-i18n@^9.0.4:
     cookie "^0.4.1"
     string-format "^2.0.0"
 
-nestjs-minio@^2.1.15:
-  version "2.1.15"
-  resolved "https://registry.yarnpkg.com/nestjs-minio/-/nestjs-minio-2.1.15.tgz#19c0487c151e76741f27c38f55876d2857b71110"
-  integrity sha512-B/0i9jxab+x36HoD+M9Osxreqnt63IGjasljDp7srwRhM6Bjl2jJrnONqd336Ehec5lFvBDvWzyJ30qcOXr0sA==
+nestjs-minio@^2.1.16:
+  version "2.1.16"
+  resolved "https://registry.yarnpkg.com/nestjs-minio/-/nestjs-minio-2.1.16.tgz#5b7c20508afdfbabb7e5da3b5ea88305513c5b0a"
+  integrity sha512-+mQ6loz63/OPBfJqqUo15jLOI3vS6h9hkodGeFjmHBFdT60AUfadPcycXV4gp/3UJc6ZBnMgXqSoMLjA63j5Bg==
   dependencies:
-    minio "^7.0.27"
+    minio "^7.0.28"
 
 nestjs-pino@^2.5.2:
   version "2.5.2"
