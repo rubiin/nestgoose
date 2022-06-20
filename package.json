@@ -110,7 +110,7 @@
 		"jest": "28.0.3",
 		"lint-staged": "^12.4.0",
 		"prettier": "^2.6.2",
-		"run-script-webpack-plugin": "^0.0.11",
+		"run-script-webpack-plugin": "^0.1.0",
 		"supertest": "6.2.2",
 		"ts-jest": "28.0.2",
 		"ts-loader": "9.3.0",
